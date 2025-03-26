@@ -1,0 +1,140 @@
+.node-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 8px;
+  }
+  
+  .node-description {
+    font-size: 12px;
+    color: #555;
+    margin: 0 0 12px;
+  }
+  
+  .handle-source,
+  .handle-target {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .task-node,
+  .condition-node,
+  .alert-node { 
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 200px;
+  }
+  
+
+  .task-node {
+    background-color: #e0f7fa;
+    border-left: 5px solid #00bcd4;
+  
+    .node-title {
+      color: #00796b;
+    }
+  
+    .node-description {
+      color: #004d40;
+    }
+  }
+  
+
+  .condition-node {
+    background-color: #fff3e0;
+    border-left: 5px solid #ff9800;
+  
+    .node-title {
+      color: #f57c00;
+    }
+  
+    .node-description {
+      color: #bf360c;
+    }
+  
+    .condition-branch-if {
+      position: absolute;
+      right: 10px;
+      margin-bottom:50% ;
+  
+      .branch-label {
+        font-size: 12px;
+        color: #555;
+      }
+    }
+  
+    .condition-branch-else {
+      position: absolute;
+      right: 10px;
+  
+      .branch-label {
+        font-size: 12px;
+        color: #555;
+      }
+    }
+  
+    .if-handle {
+      top: 30%;
+    }
+  
+    .else-handle {
+      top: 70%;
+    }
+  }
+  
+  .handle-source {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .handle-target {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  
+  .alert-node {
+    background-color: red; 
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid darkred; 
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+  
+    .node-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 8px; 
+    }
+  
+    .node-description {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+  
+    .handle-source,
+    .handle-target {
+      background-color: rgb(240, 234, 234); 
+      border: 1px solid rgb(140, 136, 136); 
+    }
+  
+    .handle-target {
+      background-color: rgb(240, 234, 234); 
+    }
+  }
+  
