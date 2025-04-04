@@ -10,10 +10,21 @@ import {
   TextField,
   IconButton,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  tableContainer: {
+    backgroundColor: "rgb(197, 191, 191)",
+  },
+  tableCell: {
+    padding: "4px 8px", // Reduce padding for smaller cell height
+  },
+});
 
 const FlowTableComponent = ({ nodes, setNodes }) => {
   const [editIdx, setEditIdx] = useState(-1);
   const [editedNode, setEditedNode] = useState({});
+  const classes = useStyles();
 
   const handleEdit = (idx) => {
     setEditIdx(idx);
@@ -34,12 +45,12 @@ const FlowTableComponent = ({ nodes, setNodes }) => {
   const handleSave = () => {
     nodes[editIdx] = editedNode;
     setEditIdx(-1);
-    let updatedOne = [...nodes]
-    setNodes(updatedOne)
+    let updatedOne = [...nodes];
+    setNodes(updatedOne);
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.tableContainer}>
       <Table>
         <TableHead>
           <TableRow>
@@ -53,59 +64,54 @@ const FlowTableComponent = ({ nodes, setNodes }) => {
         <TableBody>
           {nodes.map((node, idx) => (
             <TableRow key={idx}>
-              <TableCell>
-                {editIdx === idx ? (
-                  <TextField
-                    name="type"
-                    value={editedNode.type}
-                    onChange={handleChange}
-                  />
-                ) : (
-                  node.type
-                )}
-              </TableCell>
-              <TableCell>
+              <TableCell className={classes.tableCell} >{node.type}</TableCell>
+              <TableCell className={classes.tableCell}>
                 {editIdx === idx ? (
                   <TextField
                     name="label"
+                    size="small"
                     value={editedNode.data.label}
                     onChange={handleChange}
                   />
+                ) : node?.data?.label ? (
+                  node?.data?.label
                 ) : (
-                  node?.data?.label ? node?.data?.label : 'NA'
+                  "NA"
                 )}
               </TableCell>
-              <TableCell>
+              <TableCell className={classes.tableCell}>
                 {editIdx === idx ? (
                   <TextField
                     name="comments"
+                    size="small"
                     value={editedNode.data.comments}
                     onChange={handleChange}
                   />
+                ) : node?.data?.comments ? (
+                  node?.data?.comments
                 ) : (
-                  node?.data?.comments ? node?.data?.comments : 'NA'
+                  "NA"
                 )}
               </TableCell>
-              <TableCell>
+              <TableCell className={classes.tableCell}>
                 {editIdx === idx ? (
                   <TextField
                     name="assignee"
+                    size="small"
                     value={editedNode.data.assignee}
                     onChange={handleChange}
                   />
+                ) : node?.data?.assignee ? (
+                  node?.data?.assignee
                 ) : (
-                  node?.data?.assignee ? node?.data?.assignee : 'NA'
+                  "NA"
                 )}
               </TableCell>
-              <TableCell>
+              <TableCell className={classes.tableCell}>
                 {editIdx === idx ? (
-                  <IconButton onClick={handleSave}>
-                    Save
-                  </IconButton>
+                  <IconButton onClick={handleSave}>Save </IconButton>
                 ) : (
-                  <IconButton onClick={() => handleEdit(idx)}>
-                    Edit
-                  </IconButton>
+                  <IconButton onClick={() => handleEdit(idx)}>Edit ✏️</IconButton>
                 )}
               </TableCell>
             </TableRow>
