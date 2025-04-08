@@ -4,6 +4,10 @@
     color: #333;
     margin: 0 0 8px;
   }
+
+.edge-custom {
+  cursor: pointer;
+}
   
   .node-description {
     font-size: 12px;
@@ -82,12 +86,9 @@
     }
   
     .if-handle {
-      top: 30%;
+      top: 50%;
     }
-  
-    .else-handle {
-      top: 70%;
-    }
+
   }
   
   .handle-source {

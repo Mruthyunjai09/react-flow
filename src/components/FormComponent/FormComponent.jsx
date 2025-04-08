@@ -1,44 +1,52 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import './FormComponent.scss'
+import "./FormComponent.scss";
 
-const FormComponent = ({ node, onDeleteNode, setNodes, setEdges, setSelectedNode }) => {
-  console.log(node);
+const FormComponent = ({
+  node,
+  onDeleteNode,
+  setNodes,
+  setEdges,
+  setSelectedNode,
+}) => {
+  console.log("selected", node);
   const { register, handleSubmit, reset } = useForm({
-    defaultValues: node.data, 
+    defaultValues: node?.data,
   });
 
   // Handle form submit
   const onSubmit = (data) => {
     const updatedNode = { ...node, data };
-    setNodes((nds) => nds.map((n) => (n.id === node.id ? updatedNode : n)));
+    setNodes((nds) => nds.map((n) => (n.id === node?.id ? updatedNode : n)));
   };
 
   // Delete the node
   const handleDeleteNode = () => {
-    onDeleteNode(node.id);
-    setSelectedNode(null)
+    onDeleteNode(node?.id);
+    setSelectedNode(null);
   };
 
   const handleClose = () => {
-    setSelectedNode(null)
-  }
+    setSelectedNode(null);
+  };
 
   // Reset form values when the selected node changes
   useEffect(() => {
-    reset(node.data);
+    reset(node?.data);
   }, [node, reset]);
 
   return (
     <form className="form--component" onSubmit={handleSubmit(onSubmit)}>
       <h3 className="form--head">
-        {node.type.charAt(0).toUpperCase() + node.type.slice(1)} Node
+        {node?.type.charAt(0).toUpperCase() + node?.type.slice(1)} Node
         Configuration
-        <div className="form--close" onClick={handleClose}>X</div>
+        <div className="form--close" onClick={handleClose}>
+          X
+        </div>
       </h3>
 
       {/* Task Node Fields */}
-      {node.type === "task" && (
+      {node?.type === "task" && (
         <>
           <div className="form--rows">
             <label className="form--label">Task Name</label>
@@ -54,13 +62,17 @@ const FormComponent = ({ node, onDeleteNode, setNodes, setEdges, setSelectedNode
           </div>
           <div className="form--rows">
             <label className="form--label">Due Date</label>
-            <input className="form--input" type="date" {...register("dueDate")} />
+            <input
+              className="form--input"
+              type="date"
+              {...register("dueDate")}
+            />
           </div>
         </>
       )}
 
       {/* Condition Node Fields */}
-      {node.type === "condition" && (
+      {node?.type === "condition" && (
         <>
           <div className="form--rows">
             <label className="form--label">Condition Name</label>
@@ -74,7 +86,7 @@ const FormComponent = ({ node, onDeleteNode, setNodes, setEdges, setSelectedNode
       )}
 
       {/* Notification Node Fields */}
-      {node.type === "alerts" && (
+      {node?.type === "alerts" && (
         <>
           <div className="form--rows">
             <label className="form--label">Alert Title</label>
@@ -88,6 +100,7 @@ const FormComponent = ({ node, onDeleteNode, setNodes, setEdges, setSelectedNode
       )}
 
       {/* Submit Button */}
+
       <button type="submit">Save</button>
       <button type="button" onClick={handleDeleteNode}>
         Delete Node
